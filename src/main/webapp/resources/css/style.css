@@ -24,6 +24,23 @@ body {
 	text-align: center
 }
 
+.ecran{
+	height: 50px;
+	width: 220px;
+	font-size: 18px;
+	text-align: right;
+	border-width: 6px;
+	border-color: Black;
+	border-style: groove;
+	color: Black;
+	font-weight: bold;
+	/* text-decoration: blink; */
+	font-style: normal;
+	background-color: #E1E1E1;
+	font-family: Verdana
+	
+}
+
 /*Radionbutton*/
 
 /* Numero e operações*/
@@ -36,6 +53,11 @@ body {
 	
 	text-align: center
 }
+
+td{
+	padding: 5px;
+}
+
 
 /*botões*/
 .buttons {
@@ -93,7 +115,7 @@ body {
 
 .red {
 	height: 50px;
-	width: 104px;
+	width: 110px;
 	background-color: #c34747;
 	box-shadow: 0 5px 5px #853232, 0 9px 0 #5e2525, 0px 9px 10px
 		rgba(0, 0, 0, 0.4), inset 0px 2px 9px rgba(255, 255, 255, 0.2), inset
