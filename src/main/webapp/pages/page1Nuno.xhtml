@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Calculadora</title>
+</h:head>
+<body>
+
+	<h:form>
+		<p>Escolha o tipo de calculadora:</p>
+		<h:selectOneRadio id="tipo" value="#{calc.type}" >
+			<f:selectItem itemValue="simple" itemLabel="Simples" itemDescription="Usar calculadora simples"/>
+			<f:selectItem itemValue="science" itemLabel="Científica" itemDescription="Usar calculadora Científica" />
+		</h:selectOneRadio>
+		
+		<h:commandButton action="page2" value="OK" />
+	</h:form>
+	<br />
+	<h:form>
+		
+		<table>
+			<tr>
+				<td colspan="4">
+					<h:inputText value="#{calc.exp}" disabled="true" title="Mostrador" />
+				</td>
+			</tr>
+			<tr>
+			<td>
+				<h:commandButton id="clear" value="C" action="#{calc.clearAll()}" title="Apagar tudo"/>
+			</td>
+			<td>	
+				<h:commandButton id="clearAll" value="&#8592;" action="#{calc.clearLast()}" title="Apagar último dígito"/>
+			</td>
+			</tr>
+			<tr> 
+				<td>
+					<h:commandButton id="num7" action="page1" value="7" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="num8" action="page1" value="8" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="num9" action="page1" value="9" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="soma" action="page1" value="&#43;" actionListener="#{calc.read}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:commandButton id="num4" action="page1" value="4" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="num5" action="page1" value="5" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="num6" action="page1" value="6" actionListener="#{calc.read}"/>
+				</td>				
+				<td>
+					<h:commandButton id="sub" action="page1" value="&#8722;" actionListener="#{calc.read}"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:commandButton id="num1" action="page1" value="1" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="num2" action="page1" value="2" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="num3" action="page1" value="3" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="mult" action="page1" value="&#215;" actionListener="#{calc.read}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:commandButton id="virg" action="page1" value="&#44;" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="num0" action="page1" value="0" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="igual" action="page1" value="=" actionListener="#{calc.read}"/>
+				</td>
+				<td>
+					<h:commandButton id="div" action="page1" value="&#247;" actionListener="#{calc.read}"/>
+				</td>
+			</tr>
+			
+		</table>
+	</h:form>
+	<br />
+	<h:form>
+	<h:dataTable id="items" value="#{calc.hist.entradas}" var="e" border="2">
+		<f:facet name="caption">
+			<h:outputText value="Histórico de operações" />
+		</f:facet>		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Expressão" />
+			</f:facet>
+			<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}" title="Reutilizar esta expressão"/>			
+		</h:column>		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Resultado" />
+			</f:facet>
+			<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}" title="Reutilizar este resultado"/>			
+			
+		</h:column>
+	</h:dataTable>
+	</h:form>
+</body>
+</html>
