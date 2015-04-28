@@ -1,5 +1,7 @@
 package pt.uc.dei.aor.paj;
 
+
+
 public class Entrada {
 	private String exp;
 	private String res;

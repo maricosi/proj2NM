@@ -1,12 +1,15 @@
 package pt.uc.dei.aor.paj;
 
+
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 import net.objecthunter.exp4j.*;
 
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 
@@ -15,14 +18,17 @@ import javax.inject.Named;
 @SessionScoped
 public class Calc implements Serializable{
 
-
 	private static final long serialVersionUID = 1L;
 
 	private String exp="";
 	private String type="";
-	private ArrayList<Entrada> hist;
 	
-	private Estatistica est = new Estatistica();
+	@Inject
+	private Historico hist;
+	
+	@Inject 
+	private Estatistica est;
+	
 	
 	
 	private boolean virgulaValida; // indica se é válido usar a vírgula na expressão
@@ -30,12 +36,10 @@ public class Calc implements Serializable{
 	private boolean existeVirgula; // indica se existe uma vírgula na última parte numérica da expressão
 	
 	public Calc(){
-//		leEstatistica();
 		init();
-		hist = new ArrayList<Entrada>();
 	}	
 	
-	public ArrayList<Entrada> getHist() {
+	public Historico getHist() {
 		return hist;
 	}
 	
@@ -112,7 +116,7 @@ public class Calc implements Serializable{
 		case "igual": {
 			if(operadorValido){
 				String res = opera(exp);
-				hist.add(new Entrada(exp,res));
+				hist.novaEntrada(exp, res);
 				exp=res;
 				init();
 				operadorValido = true;
@@ -156,7 +160,7 @@ public class Calc implements Serializable{
 				out = Integer.toString((int) res);
 			}			
 			est.recolheEstatistica(exp);
-//			gravaEstatistica();			
+	
 		} catch (Exception e1) {
 			// TODO apagar			
 			System.out.println("erro");
@@ -189,62 +193,6 @@ public class Calc implements Serializable{
 		this.exp = exp;
 	}
 	
-	/*
-	 * Método que grava num ficheiro estatistica.dat o objecto do tipo Estatistica, 
-	 * que contém os dados estatísticos de utilização da calculadora.
-	 
-	
-	public void gravaEstatistica(){
-		FicheiroDeObjetos gravaEst = new FicheiroDeObjetos();
-		try {
-			gravaEst.abreEscrita("estatistica.dat");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			gravaEst.escreveObjeto(est);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			gravaEst.fechaEscrita();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	*//**
-	 * Método que procura lê o ficheiro estatistica.dat. Caso não encontre, 
-	 * cria um novo e guarda-o logo usando o método gravaEstatistica().
-	 *//*
-	public void leEstatistica() {
-		
-		FicheiroDeObjetos leEst = new FicheiroDeObjetos();
-						
-		try {
-			leEst.abreLeitura("estatistica.dat");
-		} catch (IOException e1) {
-			System.out.println("erro ao ler o ficheiro");
-		}
-		try {
-			est = (Estatistica) leEst.leObjeto();
-		} catch (ClassNotFoundException e) {
-			System.out.println("não foi encontrado o objeto pretendido no ficheiro");
-		} catch (IOException e){
-			System.out.println("Erro ao carregar o ficheiro");
-			est = new Estatistica();
-			gravaEstatistica();			
-		}
-		try {
-			leEst.fechaLeitura();
-		} catch (IOException e) {
-			System.out.println("erro ao fechar a leitura");
-		}
-			
-	}*/
 	
 	public Estatistica getEst() {
 		return est;

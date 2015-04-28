@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import javax.inject.Named;
 
-@Named
+import javax.enterprise.context.ApplicationScoped;
+
+
+@ApplicationScoped
 public class Estatistica implements Serializable{
 	
 	
