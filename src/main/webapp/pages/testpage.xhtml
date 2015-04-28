@@ -1,0 +1,21 @@
+<!DOCTYPE html > 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<h:outputScript library="js" name="script.js" />
+</h:head> 
+<h:body> 
+	<h:form action="/" id = "calctypeform">
+		<p>Escolha o tipo de calculadora:</p>
+		<h:selectOneRadio id="tipo" value="#{calc.type}" onclick="changeFormAction()">
+			<f:selectItem id="simple" itemValue="simple" itemLabel="Simples" itemDescription="Usar calculadora simples"/>
+			<f:selectItem id="science" itemValue="science" itemLabel="Científica" itemDescription="Usar calculadora Científica"/>
+		</h:selectOneRadio>
+		
+		<h:commandButton   value="OK" type="submit"/>
+	</h:form>
+</h:body> 
+</html>
