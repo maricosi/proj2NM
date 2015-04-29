@@ -21,7 +21,7 @@ public class Calc implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String mostrador="";
-	private String type="simples";
+	private String type="";
 	
 	@Inject
 	private Expressao expressao;
@@ -42,6 +42,7 @@ public class Calc implements Serializable{
 	
 	public Calc(){
 		init();
+		
 	}	
 	
 	public void read(ActionEvent evento){
