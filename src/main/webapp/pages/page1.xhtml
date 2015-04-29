@@ -1,37 +1,36 @@
+
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/html">
 
 <h:head>
 	<title>Calculadora</title>
 	<h:outputStylesheet library="css" name="style.css" />
+
 </h:head>
 <body>
 
 	<h:form>
 
-		<table class="escolhaCalculadora">
 
-			<tr>
-				<td>Escolha o tipo de calculadora:</td>
-			</tr>
+		<header class="escolhaCalculadora">
 
-			<tr>
-				<td><h:selectOneRadio id="tipo" value="#{calc.type}">
-						<f:selectItem itemValue="simple" itemLabel="Simples"
-							itemDescription="Usar calculadora simples" />
-						<f:selectItem itemValue="science" itemLabel="Científica"
-							itemDescription="Usar calculadora Científica" />
+			<h1>Calculadora</h1>
 
-					</h:selectOneRadio></td>
-
-				<!-- <h:commandButton action="page2" value="OK" /> -->
-
-
-			</tr>
-		</table>
+			<h:form>
+			<h:selectOneRadio id="tipo" value="#{calc.type}"
+				>
+				<f:selectItem itemValue="simple" itemLabel="Simples"
+					itemDescription="Usar calculadora simples" checked="checked" onclick="document.location.href = '/page1.xhtml'"/>
+				<f:selectItem itemValue="science" itemLabel="Científica"
+					itemDescription="Usar calculadora Científica" onclick="document.location.href = '/page2.xhtml'" />
+			</h:selectOneRadio>
+			<!-- <h:commandButton action="page2" value="OK" /> -->
+			</h:form>
+		</header>
 
 
 		<table class="numerosOperacoes">
@@ -39,8 +38,7 @@
 
 
 			<tr>
-				<td colspan="4"><h:inputText styleClass="ecran"
-						value="#{calc.exp}" disabled="true" /></td>
+				<td colspan="4"><h:inputTextarea  value="#{calc.exp}" styleClass="ecran"  disabled="true" /></td>
 			</tr>
 			<tr>
 				<td colspan="4"></td>
@@ -96,32 +94,48 @@
 
 		</table>
 
+		<div id="historico">
+
+
+
+			<h:form>
+
+				<h:dataTable id="items" value="#{calc.hist.entradas}" var="e"
+					border="2">
+
+
+					<f:facet name="caption">
+						<h:outputText value="Histórico de operações" />
+					</f:facet>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Expressão" />
+						</f:facet>
+						<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}"
+							title="Reutilizar esta expressão" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Resultado" />
+						</f:facet>
+						<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}"
+							title="Reutilizar este resultado" />
+
+					</h:column>
+
+
+				</h:dataTable>
+
+			</h:form>
+
+
+
+		</div>
+
 
 	</h:form>
-	<br />
-	<h:form>
-		<h:dataTable id="items" value="#{calc.hist.entradas}" var="e"
-			border="2">
-			<f:facet name="caption">
-				<h:outputText value="Histórico de operações" />
-			</f:facet>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Expressão" />
-				</f:facet>
-				<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}"
-					title="Reutilizar esta expressão" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Resultado" />
-				</f:facet>
-				<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}"
-					title="Reutilizar este resultado" />
 
-			</h:column>
-		</h:dataTable>
-	</h:form>
 
 </body>
 </html>

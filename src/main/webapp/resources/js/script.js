@@ -15,3 +15,27 @@ function changeFormAction(){
 	document.getElementById("calctypeform").action =  tipo+".xhtml";
 	
 }
+
+
+function reactToChangedRadio(){
+    alert("I'm in!");
+    var myval;
+     for(i=0;i<3;i++){
+             if(document.forms['myFormId']['myFormId:myRadio'][i].checked == true ){
+                 myval = document.forms['myFormId']['myFormId:myRadio'].text/value;
+             }
+         }
+         alert( "val = " + myval );
+ }
+
+
+
+function uncheckRadioButtons(radioButton) {
+	var selectedRadioButton;
+	   if (selectedRadioButton != null) {
+	      selectedRadioButton.checked = false;
+	   }
+
+	   selectedRadioButton = radioButton;
+	   selectedRadioButton.checked = true;
+	}
