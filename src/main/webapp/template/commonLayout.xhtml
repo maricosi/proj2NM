@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="script.js"/>
+</h:head>
+<body >
+	<div id="page">
+
+		<div>
+			<ui:insert name="header">
+				<ui:include src="commonHeader.xhtml" />
+			</ui:insert>
+		</div>
+		
+		<div id="content">
+			<ui:insert name="content">
+				<ui:include src="commonContent.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div>
+			<ui:insert name="footer">
+				<ui:include src="commonFooter.xhtml" />
+			</ui:insert>
+		</div>
+
+	</div>
+</body>
+</html>

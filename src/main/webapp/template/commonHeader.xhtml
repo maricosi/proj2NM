@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="script.js"/>
+</h:head>
+<body>
+	<ui:composition>
+		<h:form id="header">
+			<header class="escolhaCalculadora">
+				<h1>Calculadora</h1>
+				<h:selectOneRadio id="tipo" value="#{calc.type}" onclick="redirect()" required="true">
+					<f:selectItem itemValue="simples" itemLabel="Simples"
+						itemDescription="Usar calculadora simples" />
+					<f:selectItem itemValue="cientifica" itemLabel="Científica"
+						itemDescription="Usar calculadora Científica" />
+				</h:selectOneRadio>
+			</header>
+		</h:form>
+	</ui:composition>
+</body>
+</html>
