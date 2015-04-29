@@ -26,6 +26,9 @@ public class Estatistica implements Serializable{
 		operation.put("sqrt", new Operador("sqrt"));
 		operation.put("+/-", new Operador("+/-"));
 		operation.put("%", new Operador("%"));
+		operation.put("sin", new Operador("sin"));
+		operation.put("cos", new Operador("cos"));
+		operation.put("tan", new Operador("tan"));
 			
 	}
 	
@@ -64,6 +67,12 @@ public class Estatistica implements Serializable{
 					operation.get("/").add();
 				else if(input.getConteudo().contains("sqrt"))
 					operation.get("sqrt").add();
+				else if(input.getConteudo().contains("sin"))
+					operation.get("sin").add();
+				else if(input.getConteudo().contains("cos"))
+					operation.get("cos").add();
+				else if(input.getConteudo().contains("tan"))
+					operation.get("tan").add();
 			}
 		}
 		
