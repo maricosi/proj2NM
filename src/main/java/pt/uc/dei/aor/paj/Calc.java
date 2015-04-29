@@ -1,10 +1,11 @@
 package pt.uc.dei.aor.paj;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import net.objecthunter.exp4j.*;
+import net.objecthunter.exp4j.function.Function;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
@@ -20,7 +21,7 @@ public class Calc implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String mostrador="";
-	private String type="";
+	private String type="simples";
 	
 	@Inject
 	private Expressao expressao;
@@ -36,7 +37,8 @@ public class Calc implements Serializable{
 	private boolean virgulaValida; // indica se é válido usar a vírgula na expressão
 	private boolean operadorValido; // indica se é válido usar um operador na expressão
 	private boolean existeVirgula; // indica se existe uma vírgula na última parte numérica da expressão
-	private boolean parentsisAberto;
+	private boolean parentsisAberto; // indica se existe um parentsis aberto
+	private boolean graus = false;	// indica se os graus introduzidos são em radianos (predefinido) ou em graus
 	
 	public Calc(){
 		init();
@@ -103,6 +105,15 @@ public class Calc implements Serializable{
 		case "percent": {
 			percentagem();
 		}break;
+		case "sen": {
+			novoOpAngulo(" sin(");
+		}break;
+		case "cos": {
+			novoOpAngulo(" cos(");;
+		}break;
+		case "tan": {
+			novoOpAngulo(" tan(");;
+		}break;
 		case "virg": {
 			insereVirgula(".");
 		} break;
@@ -127,13 +138,25 @@ public class Calc implements Serializable{
 		}
 	}
 	
+	private void novoOpAngulo(String d){
+		operadorValido = true;
+		parentsisAberto = true;
+		if(existeVirgula == false){
+			virgulaValida = true;
+		}
+		
+		if(graus)
+			d =	d.replace("(", "d(");
+		
+		mostrador = expressao.add(new Input("op", d));
+	}
+	
 	private void percentagem(){		
 		if(mostrador.length() > 0 && expressao.peekLastInput().getTipo().contains("nm")){
 			String tmp = expressao.getLastInput();			
 			float val = Float.parseFloat(tmp);
 			mostrador = expressao.add(new Input("nm", Float.toString(val/100f)));
-			est.recolheInput(new Input("%","%"));		
-			
+			est.recolheInput(new Input("%","%"));			
 		}
 	}
 	
@@ -200,24 +223,64 @@ public class Calc implements Serializable{
 	private String opera(String exp, Expressao inputs){
 		double res;
 		String out;
+
+		// definição de novas funções
 		
-		Expression e = new ExpressionBuilder(exp).build();
 		
-		try {
-			res = e.evaluate();			
-			if(res%1 != 0)		
-				out = Double.toString(res);
-			else {
-				out = Integer.toString((int) res);
-			}			
-	//	TODO	est.recolheEstatistica(exp);
-			est.recolheEstatistica(inputs);
-	
-		} catch (Exception e1) {
-			// TODO apagar			
-			System.out.println("erro");
-			out=e1.getMessage();			
-		}				
+		Function cosd = new Function("cosd", 1) {
+		    @Override
+		    public double apply(double... args) {
+		    	return Math.cos(Math.toRadians(args[0]));
+		    }
+		};
+		
+		Function sind = new Function("sind", 1) {
+		    @Override
+		    public double apply(double... args) {
+		    	return Math.sin(Math.toRadians(args[0]));
+		    }
+		};
+		Function tand = new Function("tand", 1) {
+		    @Override
+		    public double apply(double... args) {
+		    	return Math.tan(Math.toRadians(args[0]));
+		    }
+		};
+		
+		// end
+		
+		Expression e = new ExpressionBuilder(exp)
+		.function(cosd)
+		.function(sind)
+		.function(tand)
+		.build();
+		
+		if(e.validate().isValid()){
+			try {
+				res = e.evaluate();			
+				if(res%1 != 0)		
+					out = Double.toString(res);
+				else {
+					out = Integer.toString((int) res);
+				}			
+		//	TODO	est.recolheEstatistica(exp);
+				est.recolheEstatistica(inputs);
+		
+			} catch (Exception e1) {
+				// TODO apagar			
+				System.out.println("erro");
+				out=e1.getMessage();			
+			}
+			
+		} else {
+			out = "erros:\n";
+			List<String> erros = e.validate().getErrors();
+			
+			for (String string : erros) {
+				out += string + "\n";
+				System.out.println(string);
+			}
+		}						
 		return out;
 	}
 	
@@ -271,6 +334,14 @@ public class Calc implements Serializable{
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public boolean isGraus() {
+		return graus;
+	}
+
+	public void setGraus(boolean graus) {
+		this.graus = graus;
 	}
 
 }

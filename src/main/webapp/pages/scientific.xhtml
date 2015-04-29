@@ -40,11 +40,15 @@
 
 				<tr>
 					<td colspan="4"> <h:inputTextarea value="#{calc.exp}" styleClass="ecran" disabled="true" /></td>
-					<td colspan="4"><h:inputText styleClass="ecran"
-						value="#{calc.exp}" disabled="true" /></td>
 				</tr>
 				<tr>
-					<td colspan="4"></td>
+					<td colspan="4"><h:selectOneRadio id="graus" value="#{calc.graus}">
+							<f:selectItem itemValue="false" itemLabel="Radianos"
+								itemDescription="Usar graus" />
+							<f:selectItem itemValue="true" itemLabel="Graus"
+								itemDescription="Usar radianos" />
+
+					</h:selectOneRadio></td>
 				</tr>
 				<tr>
 					<td colspan="2"><h:commandButton styleClass="buttons red"
