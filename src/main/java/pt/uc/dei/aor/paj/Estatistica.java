@@ -23,6 +23,9 @@ public class Estatistica implements Serializable{
 		operation.put("-", new Operador("-"));
 		operation.put("/", new Operador("/"));
 		operation.put("*", new Operador("*"));
+		operation.put("sqrt", new Operador("sqrt"));
+		operation.put("+/-", new Operador("+/-"));
+		operation.put("%", new Operador("%"));
 			
 	}
 	
@@ -39,8 +42,38 @@ public class Estatistica implements Serializable{
 				operation.get("/").add();
 			else if (string.contains("*"))
 				operation.get("*").add();
+			else if (string.contains("sqrt"))
+				operation.get("sqrt").add();
 		}
 		
+	}
+	
+	public void recolheEstatistica(Expressao exp){
+		
+		ArrayList<Input> inputs = exp.getInputs();
+		
+		for (Input input : inputs) {
+			if(input.getTipo().contains("op")){
+				if(input.getConteudo().contains("+"))
+					operation.get("+").add();
+				else if(input.getConteudo().contains("-"))
+					operation.get("-").add();
+				else if(input.getConteudo().contains("*"))
+					operation.get("*").add();
+				else if(input.getConteudo().contains("/"))
+					operation.get("/").add();
+				else if(input.getConteudo().contains("sqrt"))
+					operation.get("sqrt").add();
+			}
+		}
+		
+	}
+	
+	public void recolheInput(Input in){
+		if(in.getTipo().contains("+/-"))
+			operation.get("+/-").add();
+		else if(in.getTipo().contains("%"))
+			operation.get("%").add();
 	}
 
 	public List<Entry<String, Operador>> getEntrada() {

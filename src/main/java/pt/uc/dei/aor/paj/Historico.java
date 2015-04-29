@@ -1,7 +1,9 @@
 package pt.uc.dei.aor.paj;
 
 import java.util.ArrayList;
+
 import javax.enterprise.context.SessionScoped;
+
 import java.io.Serializable;
 
 @SessionScoped
@@ -12,8 +14,8 @@ public class Historico implements Serializable {
 	private ArrayList<Entrada> entradas = new ArrayList<>();
 
 	
-	public void novaEntrada(String expr, String result) {
-		entradas.add(new Entrada(expr,result));
+	public void adicionaEntrada(Entrada ent) {
+		entradas.add(ent);
 	}
 	
 	public ArrayList<Entrada> getEntradas() {
