@@ -1,0 +1,149 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Calculadora</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<body>
+
+	<h:form>
+		<div id="calculadora">
+			<table class="escolhaCalculadora">
+
+				<tr>
+					<td>Escolha o tipo de calculadora:</td>
+				</tr>
+
+				<tr>
+					<td><h:selectOneRadio id="tipo" value="#{calc.type}">
+							<f:selectItem itemValue="simple" itemLabel="Simples"
+								itemDescription="Usar calculadora simples" />
+							<f:selectItem itemValue="science" itemLabel="Científica"
+								itemDescription="Usar calculadora Científica" />
+
+					</h:selectOneRadio></td>
+
+					<!-- <h:commandButton action="page2" value="OK" /> -->
+
+
+				</tr>
+			</table>
+
+
+			<table class="numerosOperacoes">
+
+
+
+				<tr>
+					<td colspan="4"> <h:inputTextarea value="#{calc.exp}" styleClass="ecran" disabled="true" /></td>
+					<td colspan="4"><h:inputText styleClass="ecran"
+						value="#{calc.exp}" disabled="true" /></td>
+				</tr>
+				<tr>
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><h:commandButton styleClass="buttons red"
+							id="clear" value="C" action="#{calc.clearAll()}" /></td>
+					<td colspan="2"><h:commandButton styleClass="buttons red"
+							id="clearAll" value="&#8592;" action="#{calc.clearLast()}" /></td>
+				</tr>
+				
+				<tr>
+					<td><h:commandButton styleClass="buttons orange" id="raizq"
+							action="page1c" value="sqrt" actionListener="#{calc.read}" /></td>					
+					<td><h:commandButton styleClass="buttons orange" id="sen"
+							action="page1c" value="sen" actionListener="#{calc.read}" /></td>					
+					<td><h:commandButton styleClass="buttons orange" id="cos"
+							action="page1c" value="cos" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="tan"
+							action="page1c" value="tan" actionListener="#{calc.read}" /></td>
+				
+				</tr>
+				<tr>
+					<td><h:commandButton styleClass="buttons orange" id="abrepar"
+							action="page1c" value="(" actionListener="#{calc.read}" /></td>					
+					<td><h:commandButton styleClass="buttons orange" id="fechapar"
+							action="page1c" value=")" actionListener="#{calc.read}" /></td>					
+					<td><h:commandButton styleClass="buttons orange" id="maismenos"
+							action="page1c" value="+/-" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="percent"
+							action="page1c" value="%" actionListener="#{calc.read}" /></td>
+				
+				</tr>
+
+
+				<tr>
+					<td><h:commandButton styleClass="buttons orange" id="num7"
+							action="page1c" value="7" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="num8"
+							action="page1c" value="8" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="num9"
+							action="page1c" value="9" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons blue" id="soma"
+							action="page1c" value="&#43;" actionListener="#{calc.read}" /></td>
+				</tr>
+				<tr>
+					<td><h:commandButton styleClass="buttons orange" id="num4"
+							action="page1c" value="4" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="num5"
+							action="page1c" value="5" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="num6"
+							action="page1c" value="6" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons blue" id="sub"
+							action="page1c" value="&#8722;" actionListener="#{calc.read}" /></td>
+				</tr>
+
+				<tr>
+					<td><h:commandButton styleClass="buttons orange" id="num1"
+							action="page1c" value="1" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="num2"
+							action="page1c" value="2" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="num3"
+							action="page1c" value="3" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons blue" id="mult"
+							action="page1c" value="&#215;" actionListener="#{calc.read}" /></td>
+				</tr>
+				<tr>
+					<td><h:commandButton styleClass="buttons blue" id="virg"
+							action="page1c" value="&#44;" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons orange" id="num0"
+							action="page1c" value="0" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons" id="igual"
+							action="page1c" value="=" actionListener="#{calc.read}" /></td>
+					<td><h:commandButton styleClass="buttons blue" id="div"
+							action="page1c" value="&#247;" actionListener="#{calc.read}" /></td>
+				</tr>
+
+			</table>
+
+		</div>
+	</h:form>
+	<br />
+	<h:form>
+	<h:dataTable id="items" value="#{calc.hist.entradas}" var="e" border="2">
+		<f:facet name="caption">
+			<h:outputText value="Histórico de operações" />
+		</f:facet>		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Expressão" />
+			</f:facet>
+			<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}" title="Reutilizar esta expressão"/>			
+		</h:column>		
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Resultado" />
+			</f:facet>
+			<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}" title="Reutilizar este resultado"/>			
+			
+		</h:column>
+	</h:dataTable>
+	</h:form>
+
+</body>
+</html>
