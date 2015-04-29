@@ -1,10 +1,17 @@
 @CHARSET "ISO-8859-1";
 
-body {
-	background-color: white;
-	margin: 0;
-	padding: 40px;
+#page {
+	background-repeat:repeat-x;
+	background-image: url("../resources/images/Wood_floor_by_braddamy.png");
 	text-align: center;
+	border-radius: 20px;
+	background-size: cover;
+	background-attachment: fixed;
+	
+}
+
+#content {
+	
 }
 
 /*calculadora*/
@@ -28,7 +35,6 @@ body {
 }
 
 /*Radionbutton*/
-
 
 /* Numero e operações*/
 .numerosOperacoes {

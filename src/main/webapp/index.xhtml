@@ -1,11 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/html">
 
 <h:head>
-	<title>Facelets Hello World</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="script.js"/>
 </h:head>
 <h:body>
-	<h1>Hello World!</h1>
+	<ui:composition template="template/commonLayout.xhtml">
+	
+	</ui:composition>
 </h:body>
 </html>
