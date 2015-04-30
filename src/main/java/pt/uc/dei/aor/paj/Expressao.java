@@ -17,7 +17,18 @@ public class Expressao implements Serializable {
 	private Stack<Input> entrada = new Stack<>();
 	
 	public String add(Input in){
-		entrada.push(in);
+		if(this.entrada.size() > 0 && 
+				(in.getTipo().contains("nm") || 
+						in.getTipo().contains("vg")) &&
+				(this.peekLastInput().getTipo().contains("nm") || 
+					this.peekLastInput().getTipo().contains("vg"))){
+			
+			String tmp = this.getLastInput();			
+			tmp = tmp.concat(in.getConteudo());			
+			entrada.push(new Input("nm", tmp));
+		} else {
+			entrada.push(in);
+		}		
 		return getExpressao();
 	}
 	

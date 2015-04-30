@@ -37,14 +37,14 @@ public class ClassTeste {
 		
 		
 		
-		Estatistica est = new Estatistica();
+		
 //		System.out.println(fazCalculo("3 + 3"));
 //		est.recolheEstatistica("3 + 2");
 		
-		String a = "2 + 4 + 5 + 7 + 9 + 5 + 4";
 		
 		
-		est.recolheEstatistica(a);
+		
+	
 		
 //		for (String string : a1) {
 //			est.recolheEstatistica(string);

@@ -1,0 +1,173 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Calculadora</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="script.js" />
+	
+</h:head>
+<body>
+	<ui:composition template="../template/commonLayout.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+				<div id="calculadora">
+
+
+
+					<table class="numerosOperacoes">
+
+
+
+						<tr>
+							<td colspan="4"><h:inputTextarea value="#{calc.exp}"
+									styleClass="ecran" disabled="true" /></td>
+						</tr>
+						<tr>
+							<td colspan="4"><h:selectOneRadio id="graus"
+									value="#{calc.graus}">
+									<f:selectItem itemValue="false" itemLabel="Radianos"
+										itemDescription="Usar graus" />
+									<f:selectItem itemValue="true" itemLabel="Graus"
+										itemDescription="Usar radianos" />
+								</h:selectOneRadio></td>
+						</tr>
+						<tr>
+							<td colspan="2"><h:commandButton styleClass="buttons red"
+									id="clear" value="C" action="#{calc.clearAll()}" /></td>
+							<td colspan="2"><h:commandButton styleClass="buttons red"
+									id="clearAll" value="&#8592;" action="#{calc.clearLast()}" /></td>
+						</tr>
+						
+						<tr>
+							<td><h:commandButton styleClass="buttons orange" id="inverso"
+									action="scientificNuno" value="&#185;&#8725;&#8339;" actionListener="#{calc.read}" title="Função inverso"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="xquad"
+									action="scientificNuno" value="x&#178;" actionListener="#{calc.read}" title="X ao quadrado"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="pi"
+									action="scientificNuno" value="&#960;" actionListener="#{calc.read}" title="Constante PI (3,14...)"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="neper"
+									action="scientificNuno" value="e" actionListener="#{calc.read}" title="Constante de Euler (2,718...)"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="xexpy"
+									action="scientificNuno" value="x^y" actionListener="#{calc.read}" title="X elevado a Y"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="log10"
+									action="scientificNuno" value="log&#8321;&#8320;" actionListener="#{calc.read}" title="Logaritmo de base 10"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="log2"
+									action="scientificNuno" value="log&#8322;" actionListener="#{calc.read}" title="Logaritmo de base 2"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="log"
+									action="scientificNuno" value="ln" actionListener="#{calc.read}" title="Logaritmo natural (base e)"/></td>
+							<td><h:commandButton styleClass="buttons orange" id="fact"
+									action="scientificNuno" value="n!" actionListener="#{calc.read}" title="Factorial"/></td>
+
+						</tr>
+
+						<tr>
+							<td><h:commandButton styleClass="buttons orange" id="raizq"
+									action="scientificNuno" value="&#8730;" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="sen"
+									action="scientificNuno" value="sen" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="cos"
+									action="scientificNuno" value="cos" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="tan"
+									action="scientificNuno" value="tan" actionListener="#{calc.read}" /></td>
+
+						</tr>
+						<tr>
+							<td><h:commandButton styleClass="buttons orange"
+									id="abrepar" action="scientificNuno" value="("
+									actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange"
+									id="fechapar" action="scientificNuno" value=")"
+									actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange"
+									id="maismenos" action="scientificNuno" value="&#177;"
+									actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange"
+									id="percent" action="scientificNuno" value="&#37;"
+									actionListener="#{calc.read}" /></td>
+
+						</tr>
+
+
+						<tr>
+							<td><h:commandButton styleClass="buttons orange" id="num7"
+									action="scientificNuno" value="7" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="num8"
+									action="scientificNuno" value="8" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="num9"
+									action="scientificNuno" value="9" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons blue" id="soma"
+									action="scientificNuno" value="&#43;" actionListener="#{calc.read}" /></td>
+						</tr>
+						<tr>
+							<td><h:commandButton styleClass="buttons orange" id="num4"
+									action="scientificNuno" value="4" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="num5"
+									action="scientificNuno" value="5" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="num6"
+									action="scientificNuno" value="6" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons blue" id="sub"
+									action="scientificNuno" value="&#8722;"
+									actionListener="#{calc.read}" /></td>
+						</tr>
+
+						<tr>
+							<td><h:commandButton styleClass="buttons orange" id="num1"
+									action="scientificNuno" value="1" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="num2"
+									action="scientificNuno" value="2" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="num3"
+									action="scientificNuno" value="3" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons blue" id="mult"
+									action="scientificNuno" value="&#215;"
+									actionListener="#{calc.read}" /></td>
+						</tr>
+						<tr>
+							<td><h:commandButton styleClass="buttons blue" id="virg"
+									action="scientificNuno" value="&#44;" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="num0"
+									action="scientificNuno" value="0" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons" id="igual"
+									action="scientificNuno" value="=" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons blue" id="div"
+									action="scientificNuno" value="&#247;"
+									actionListener="#{calc.read}" /></td>
+						</tr>
+
+					</table>
+
+				</div>
+			</h:form>
+			<br />
+			<h:form>
+				<h:dataTable id="items" value="#{calc.hist.entradas}" var="e"
+					border="2">
+					<f:facet name="caption">
+						<h:outputText value="Histórico de operações" />
+					</f:facet>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Expressão" />
+						</f:facet>
+						<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}"
+							title="Reutilizar esta expressão" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Resultado" />
+						</f:facet>
+						<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}"
+							title="Reutilizar este resultado" />
+
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
