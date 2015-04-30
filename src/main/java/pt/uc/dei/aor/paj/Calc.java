@@ -142,6 +142,17 @@ public class Calc implements Serializable{
 		case "fact": {
 			factorial();
 		}break;
+		case "cubicrt": {
+			novaRaiz(" cbrt(");
+		}break;
+		case "eexpx": {
+			operadorValido = true;
+			novoOperador(" e^");
+		}break;
+		case "dezexpx": {
+			operadorValido = true;
+			novoOperador(" 10^");
+		}break;
 		case "virg": {
 			insereVirgula(".");
 		} break;

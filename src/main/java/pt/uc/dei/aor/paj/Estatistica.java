@@ -38,27 +38,11 @@ public class Estatistica implements Serializable{
 		operation.put("log2", new Operador("log2"));
 		operation.put("log", new Operador("log"));
 		operation.put("!", new Operador("!"));
+		operation.put("cbrt", new Operador("cbrt"));
+		operation.put("e^x", new Operador("e^x"));
+		operation.put("10^x", new Operador("10^x"));
 			
 	}
-	
-//	public void recolheEstatistica(String exp){
-//			
-//		String [] op = exp.split("\\ ");
-//		
-//		for (String string : op) {
-//			if (string.contains("+"))
-//				operation.get("+").add();
-//			else if (string.contains("-"))
-//				operation.get("-").add();
-//			else if (string.contains("/"))
-//				operation.get("/").add();
-//			else if (string.contains("*"))
-//				operation.get("*").add();
-//			else if (string.contains("sqrt"))
-//				operation.get("sqrt").add();
-//		}
-//		
-//	}
 	
 	public void recolheEstatistica(Expressao exp){
 		
@@ -92,6 +76,12 @@ public class Estatistica implements Serializable{
 					operation.get("log").add();
 				else if(input.getConteudo().contains("!"))
 					operation.get("!").add();
+				else if(input.getConteudo().contains("cbrt"))
+					operation.get("cbrt").add();
+				else if(input.getConteudo().contains("e^"))
+					operation.get("e^x").add();
+				else if(input.getConteudo().contains("10^"))
+					operation.get("10^x").add();
 			}
 		}
 		
