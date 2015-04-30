@@ -7,6 +7,15 @@
 	border-radius: 20px;
 	background-size: cover;
 	background-attachment: fixed;
+	display: inherit;
+	
+}
+
+h1{
+	position: relative;
+	margin: 0px;
+	font-family: Verdana;
+	
 	
 }
 
@@ -29,7 +38,7 @@
 }
 
 /*calculadora*/
-.escolhaCalculadora {
+#header {
 	position: relative;
 	display: block;
 	text-align: center;
@@ -49,6 +58,27 @@
 }
 
 /*Radionbutton*/
+.tipo{
+	display: inline-block;
+	padding: 5px;
+	font-size: 18px;
+}
+
+.graus{
+	position:relative;
+	width:auto;
+	height:auto;
+	display: inline-table;
+	font-size: 12px;
+	font-family: verdana;
+	color: Wheat;
+	font-weight: bold
+	
+}
+
+#content{
+	display: inline-table;
+}
 
 /* Numero e operações*/
 .numerosOperacoes {
@@ -64,7 +94,7 @@
 	margin-bottom: 20px;
 }
 
-.ecran {
+.ecranBasico {
 	height: 50px;
 	width: 220px;
 	font-size: 18px;
@@ -77,14 +107,46 @@
 	/* text-decoration: blink; */
 	font-style: normal;
 	background-color: #E1E1E1;
-	font-family: Verdana
+	font-family: Verdana;
+}
+
+.ecranCientifica {
+	height: 50px;
+	width: 470px;
+	font-size: 18px;
+	text-align: right;
+	border-width: 6px;
+	border-color: Black;
+	border-style: groove;
+	color: Black;
+	font-weight: bold;
+	/* text-decoration: blink; */
+	font-style: normal;
+	background-color: #E1E1E1;
+	font-family: Verdana;
 }
 
 td {
 	padding: 5px;
+	font-size: 12px;
+	font-family: Verdana;
 }
 
 #historico {
+	display: inline-table;
+	text-align: center;
+	margin-left: 20px;
+	margin-right: auto;
+	background-image:url("../resources/images/folha.jpg");
+	padding: 20px;
+	font-weight: bold;
+	font-family: Verdana;
+	box-shadow: 0px 1px 3px #666666;
+	color: Black;
+	margin-bottom: 20px;
+}
+
+#estatistica{
 	display: inline-table;
 	text-align: center;
 	margin-left: 20px;

@@ -16,12 +16,12 @@
 				<div id="calculadora">
 					<table class="numerosOperacoes">
 						<tr>
-							<td colspan="4"><h:inputTextarea value="#{calc.exp}"
-									styleClass="ecran" disabled="true" /></td>
+							<td colspan="8"><h:inputTextarea value="#{calc.exp}"
+									styleClass="ecranCientifica" disabled="true" /></td>
 						</tr>
 						<tr>
 							<td colspan="4"><h:selectOneRadio id="graus"
-									value="#{calc.graus}">
+									styleClass="graus" value="#{calc.graus}">
 									<f:selectItem itemValue="false" itemLabel="Radianos"
 										itemDescription="Usar graus" />
 									<f:selectItem itemValue="true" itemLabel="Graus"
@@ -33,20 +33,6 @@
 									id="clear" value="C" action="#{calc.clearAll()}" /></td>
 							<td colspan="2"><h:commandButton styleClass="buttons red"
 									id="clearAll" value="&#8592;" action="#{calc.clearLast()}" /></td>
-						</tr>
-
-						<tr>
-							<td><h:commandButton styleClass="buttons orange" id="raizq"
-									action="scientific" value="&#8730;" actionListener="#{calc.read}" /></td>
-							<td><h:commandButton styleClass="buttons orange" id="sen"
-									action="scientific" value="sen" actionListener="#{calc.read}" /></td>
-							<td><h:commandButton styleClass="buttons orange" id="cos"
-									action="scientific" value="cos" actionListener="#{calc.read}" /></td>
-							<td><h:commandButton styleClass="buttons orange" id="tan"
-									action="scientific" value="tan" actionListener="#{calc.read}" /></td>
-
-						</tr>
-						<tr>
 							<td><h:commandButton styleClass="buttons orange"
 									id="abrepar" action="scientific" value="("
 									actionListener="#{calc.read}" /></td>
@@ -54,14 +40,13 @@
 									id="fechapar" action="scientific" value=")"
 									actionListener="#{calc.read}" /></td>
 							<td><h:commandButton styleClass="buttons orange"
-									id="maismenos" action="scientific" value="+/-"
+									id="maismenos" action="scientific" value="&#177;"
 									actionListener="#{calc.read}" /></td>
 							<td><h:commandButton styleClass="buttons orange"
 									id="percent" action="scientific" value="%"
 									actionListener="#{calc.read}" /></td>
 
 						</tr>
-
 
 						<tr>
 							<td><h:commandButton styleClass="buttons orange" id="num7"
@@ -72,6 +57,18 @@
 									action="scientific" value="9" actionListener="#{calc.read}" /></td>
 							<td><h:commandButton styleClass="buttons blue" id="soma"
 									action="scientific" value="&#43;" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="pi"
+									action="scientific" value="&#960;"
+									actionListener="#{calc.read}" title="Constante PI (3,14...)" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="xquad"
+									action="scientific" value="x&#178;"
+									actionListener="#{calc.read}" title="X ao quadrado" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="log10"
+									action="scientific" value="log&#8321;&#8320;"
+									actionListener="#{calc.read}" title="Logaritmo de base 10" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="neper"
+									action="scientific" value="e" actionListener="#{calc.read}"
+									title="Constante de Euler (2,718...)" /></td>
 						</tr>
 						<tr>
 							<td><h:commandButton styleClass="buttons orange" id="num4"
@@ -83,6 +80,18 @@
 							<td><h:commandButton styleClass="buttons blue" id="sub"
 									action="scientific" value="&#8722;"
 									actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="sen"
+									action="scientific" value="sen" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange"
+									id="inverso" action="scientific" value="&#185;&#8725;&#8339;"
+									actionListener="#{calc.read}" title="Função inverso" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="log2"
+									action="scientific" value="log&#8322;"
+									actionListener="#{calc.read}" title="Logaritmo de base 2" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="eexpx"
+									action="scientific" value="e&#739;"
+									actionListener="#{calc.read}" title="Constante e^x" /></td>
+
 						</tr>
 
 						<tr>
@@ -95,6 +104,18 @@
 							<td><h:commandButton styleClass="buttons blue" id="mult"
 									action="scientific" value="&#215;"
 									actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="cos"
+									action="scientific" value="cos" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="xexpy"
+									action="scientific" value="x&#696;" actionListener="#{calc.read}"
+									title="X elevado a Y" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="log"
+									action="scientific" value="ln" actionListener="#{calc.read}"
+									title="Logaritmo natural (base e)" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="raizq"
+									action="scientific" value="&#8730;"
+									actionListener="#{calc.read}" /></td>
+
 						</tr>
 						<tr>
 							<td><h:commandButton styleClass="buttons blue" id="virg"
@@ -106,6 +127,17 @@
 							<td><h:commandButton styleClass="buttons blue" id="div"
 									action="scientific" value="&#247;"
 									actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="tan"
+									action="scientific" value="tan" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange"
+									id="dezexpx" action="scientific" value="10&#739;"
+									actionListener="#{calc.read}" title="10^x" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="fact"
+									action="scientific" value="n!" actionListener="#{calc.read}"
+									title="Factorial" /></td>
+							<td><h:commandButton styleClass="buttons orange"
+									id="cubicrt" action="scientificNuno" value="&#8731;"
+									actionListener="#{calc.read}" title="Raiz cúbica" /></td>
 						</tr>
 
 					</table>
