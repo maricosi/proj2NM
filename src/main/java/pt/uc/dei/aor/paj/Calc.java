@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.objecthunter.exp4j.*;
 import net.objecthunter.exp4j.function.Function;
+import net.objecthunter.exp4j.operator.Operator;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
@@ -38,11 +39,10 @@ public class Calc implements Serializable{
 	private boolean operadorValido; // indica se é válido usar um operador na expressão
 	private boolean existeVirgula; // indica se existe uma vírgula na última parte numérica da expressão
 	private boolean parentsisAberto; // indica se existe um parentsis aberto
-	private boolean graus = false;	// indica se os graus introduzidos são em radianos (predefinido) ou em graus
+	private boolean graus = false;	// indica se os ângulos introduzidos são em radianos (predefinido) ou em graus
 	
 	public Calc(){
-		init();
-		
+		init();		
 	}	
 	
 	public void read(ActionEvent evento){
@@ -110,10 +110,37 @@ public class Calc implements Serializable{
 			novoOpAngulo(" sin(");
 		}break;
 		case "cos": {
-			novoOpAngulo(" cos(");;
+			novoOpAngulo(" cos(");
 		}break;
 		case "tan": {
-			novoOpAngulo(" tan(");;
+			novoOpAngulo(" tan(");
+		}break;
+		case "inverso": {
+			inverso();
+		}break;
+		case "xquad": {
+			quadrado();
+		}break;
+		case "xexpy": {
+			novoOperador("^");
+		}break;
+		case "pi": {
+			inserePI("pi");
+		}break;
+		case "neper": {
+			insereE("e");
+		}break;
+		case "log10": {
+			novoLogaritmo(" log10(");
+		}break;
+		case "log2": {
+			novoLogaritmo(" log2(");
+		}break;
+		case "log": {
+			novoLogaritmo(" log(");
+		}break;
+		case "fact": {
+			factorial();
 		}break;
 		case "virg": {
 			insereVirgula(".");
@@ -129,13 +156,71 @@ public class Calc implements Serializable{
 	private void calcula(){
 		if(operadorValido && parentsisAberto == false){
 			String res = opera(mostrador, expressao);
-			ArrayList<Input> inputs = expressao.getInputs();
-			hist.adicionaEntrada(new Entrada(mostrador, res, inputs));
-	//TODO	mostrador=res;
-			mostrador = expressao.clear();
-			mostrador = expressao.add(new Input("nm", res));
-			init();
-			operadorValido = true;
+			if(res.contains("erros") == false){
+				ArrayList<Input> inputs = expressao.getInputs();
+				hist.adicionaEntrada(new Entrada(mostrador, res, inputs));
+				mostrador = expressao.clear();
+				mostrador = expressao.add(new Input("nm", res));
+				init();
+				operadorValido = true;
+			}else {
+				mostrador = res;
+			}			
+		}
+	}
+	
+	private void factorial(){		
+		if(mostrador.length() > 0 && expressao.peekLastInput().getTipo().contains("nm")){
+			String tmp = expressao.peekLastInput().getConteudo();			
+			double val = Double.parseDouble(tmp);
+			if(val%1 == 0 && val > 0 && val <= 170){
+				mostrador = expressao.add(new Input("op", "!"));
+			}			
+		}
+	}
+	
+	private void novoLogaritmo(String d){
+		operadorValido = true;
+		parentsisAberto = true;
+		if(existeVirgula == false){
+			virgulaValida = true;
+		}		
+		mostrador = expressao.add(new Input("op", d));
+	}
+	
+	private void insereE(String d){
+		operadorValido = true;
+		if(existeVirgula == false){
+			virgulaValida = true;
+		}
+		est.recolheInput(new Input("e", d));
+		mostrador = expressao.add(new Input("nm", d));
+	}
+	
+	private void inserePI(String d){
+		operadorValido = true;
+		if(existeVirgula == false){
+			virgulaValida = true;
+		}
+		est.recolheInput(new Input("pi", d));
+		mostrador = expressao.add(new Input("nm", d));
+	}
+	
+	private void quadrado(){		
+		if(mostrador.length() > 0 && expressao.peekLastInput().getTipo().contains("nm")){
+			String tmp = expressao.getLastInput();			
+			float val = Float.parseFloat(tmp);
+			mostrador = expressao.add(new Input("nm", Double.toString(Math.pow(val, 2))));
+			est.recolheInput(new Input("x^2","x^2"));			
+		}
+	}
+	
+	private void inverso(){		
+		if(mostrador.length() > 0 && expressao.peekLastInput().getTipo().contains("nm")){
+			String tmp = expressao.getLastInput();			
+			float val = Float.parseFloat(tmp);
+			mostrador = expressao.add(new Input("nm", Float.toString(1/val)));
+			est.recolheInput(new Input("1/x","1/x"));			
 		}
 	}
 	
@@ -144,8 +229,7 @@ public class Calc implements Serializable{
 		parentsisAberto = true;
 		if(existeVirgula == false){
 			virgulaValida = true;
-		}
-		
+		}		
 		if(graus)
 			d =	d.replace("(", "d(");
 		
@@ -248,33 +332,47 @@ public class Calc implements Serializable{
 		    }
 		};
 		
+		Operator factorial = new Operator("!", 1, true, Operator.PRECEDENCE_POWER + 1) {
+
+		    @Override
+		    public double apply(double... args) {
+		        final int arg = (int) args[0];
+		        double result = 1;
+		        for (int i = 1; i <= arg; i++) {
+		            result *= i;
+		        }
+		        return result;
+		    }
+		};
+		
 		// end
 		
 		Expression e = new ExpressionBuilder(exp)
 		.function(cosd)
 		.function(sind)
 		.function(tand)
-		.build();
+		.operator(factorial)
+		.variables("pi", "e")
+		.build()
+		.setVariable("pi", Math.PI)
+		.setVariable("e", Math.E);
 		
 		if(e.validate().isValid()){
 			try {
 				res = e.evaluate();			
 				if(res%1 != 0)		
 					out = Double.toString(res);
-				else {
-					out = Integer.toString((int) res);
-				}			
-		//	TODO	est.recolheEstatistica(exp);
-				est.recolheEstatistica(inputs);
-		
+				else if (Double.toString(res).endsWith(".0")){
+					out = Double.toString(res);
+					out = out.substring(0, out.length()-2);					
+				} else out = Double.toString(res);
+				est.recolheEstatistica(inputs);		
 			} catch (Exception e1) {
-				// TODO apagar			
-				System.out.println("erro");
-				out=e1.getMessage();			
+				out="erros na expressao";			
 			}
 			
 		} else {
-			out = "erros:\n";
+			out = "erros na expressao:\n";
 			List<String> erros = e.validate().getErrors();
 			
 			for (String string : erros) {
@@ -289,12 +387,13 @@ public class Calc implements Serializable{
 		virgulaValida = false;
 		operadorValido = false;
 		existeVirgula = false;
+		parentsisAberto = false;
 	}
 	
 	public void clearAll(){
-		this.mostrador="";
-		expressao.clear();
+		mostrador = expressao.clear();
 		init();
+		operadorValido = true;
 	}
 	
 	public void clearLast(){
@@ -305,12 +404,14 @@ public class Calc implements Serializable{
 	public void reUseExp(Entrada ent){
 		mostrador = ent.getExp();
 		expressao.loadInputs(ent.getInputs());
+		operadorValido = true;
 	}
 	
 	public void reUseResult(Entrada ent){
 		clearAll();
 		mostrador = ent.getRes();
 		expressao.add(new Input("nm", ent.getRes()));
+		operadorValido = true;
 	}
 
 	public String getExp() {
