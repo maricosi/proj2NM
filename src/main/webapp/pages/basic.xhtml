@@ -12,71 +12,72 @@
 	<h:outputScript library="js" name="script.js" />
 
 </h:head>
-<body >
+<body>
 
 	<ui:composition template="../template/commonLayout.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<table class="numerosOperacoes">
+				<div id="calculadora">
+					<table class="numerosOperacoes">
 
-					<tr>
-						<td colspan="4"><h:inputTextarea value="#{calc.exp}"
-								styleClass="ecranbasica" disabled="true" /></td>
-					</tr>
-					<tr>
-						<td colspan="4"></td>
-					</tr>
-					<tr>
-						<td colspan="2"><h:commandButton styleClass="buttons red"
-								id="clear" value="C" action="#{calc.clearAll()}" /></td>
-						<td colspan="2"><h:commandButton styleClass="buttons red"
-								id="clearAll" value="&#8592;" action="#{calc.clearLast()}" /></td>
-					</tr>
+						<tr>
+							<td colspan="4"><h:inputTextarea value="#{calc.exp}"
+									styleClass="ecranbasica" disabled="true" /></td>
+						</tr>
+						<tr>
+							<td colspan="4"></td>
+						</tr>
+						<tr>
+							<td colspan="2"><h:commandButton styleClass="buttons red"
+									id="clear" value="C" action="#{calc.clearAll()}" /></td>
+							<td colspan="2"><h:commandButton styleClass="buttons red"
+									id="clearAll" value="&#8592;" action="#{calc.clearLast()}" /></td>
+						</tr>
 
-					<tr>
-						<td><h:commandButton styleClass="buttons orange" id="num7"
-								action="basic" value="7" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons orange" id="num8"
-								action="basic" value="8" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons orange" id="num9"
-								action="basic" value="9" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons blue" id="soma"
-								action="basic" value="&#43;" actionListener="#{calc.read}" /></td>
-					</tr>
-					<tr>
-						<td><h:commandButton styleClass="buttons orange" id="num4"
-								action="basic" value="4" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons orange" id="num5"
-								action="basic" value="5" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons orange" id="num6"
-								action="basic" value="6" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons blue" id="sub"
-								action="basic" value="&#8722;" actionListener="#{calc.read}" /></td>
-					</tr>
+						<tr>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num7"
+									action="basic" value="7" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num8"
+									action="basic" value="8" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num9"
+									action="basic" value="9" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="soma"
+									action="basic" value="&#43;" actionListener="#{calc.read}" /></td>
+						</tr>
+						<tr>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num4"
+									action="basic" value="4" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num5"
+									action="basic" value="5" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num6"
+									action="basic" value="6" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="sub"
+									action="basic" value="&#8722;" actionListener="#{calc.read}" /></td>
+						</tr>
 
-					<tr>
-						<td><h:commandButton styleClass="buttons orange" id="num1"
-								action="basic" value="1" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons orange" id="num2"
-								action="basic" value="2" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons orange" id="num3"
-								action="basic" value="3" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons blue" id="mult"
-								action="basic" value="&#215;" actionListener="#{calc.read}" /></td>
-					</tr>
-					<tr>
-						<td><h:commandButton styleClass="buttons blue" id="virg"
-								action="basic" value="&#44;" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons orange" id="num0"
-								action="basic" value="0" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons" id="igual"
-								action="basic" value="=" actionListener="#{calc.read}" /></td>
-						<td><h:commandButton styleClass="buttons blue" id="div"
-								action="basic" value="&#247;" actionListener="#{calc.read}" /></td>
-					</tr>
+						<tr>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num1"
+									action="basic" value="1" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num2"
+									action="basic" value="2" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num3"
+									action="basic" value="3" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="mult"
+									action="basic" value="&#215;" actionListener="#{calc.read}" /></td>
+						</tr>
+						<tr>
+							<td><h:commandButton styleClass="buttons orangeLith" id="virg"
+									action="basic" value="&#44;" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orangeLith" id="num0"
+									action="basic" value="0" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons green" id="igual"
+									action="basic" value="=" actionListener="#{calc.read}" /></td>
+							<td><h:commandButton styleClass="buttons orange" id="div"
+									action="basic" value="&#247;" actionListener="#{calc.read}" /></td>
+						</tr>
 
-				</table>
-
+					</table>
+				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
