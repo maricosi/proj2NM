@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="script.js" />
+</h:head>
+<body>
+	<ui:composition>
+		<div id="historico">
+			<h:form>
+				<h:dataTable id="items" value="#{calc.hist.entradas}" var="e"
+					border="2">
+					<f:facet name="caption">
+						<h:outputText value="Histórico de operações" />
+					</f:facet>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Expressão" />
+						</f:facet>
+						<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}"
+							title="Reutilizar esta expressão" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Resultado" />
+						</f:facet>
+						<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}"
+							title="Reutilizar este resultado" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</ui:composition>
+</body>
+</html>
