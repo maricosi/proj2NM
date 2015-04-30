@@ -11,18 +11,10 @@
 </h:head>
 <body>
 	<ui:composition template="../template/commonLayout.xhtml">
-
 		<ui:define name="content">
-
 			<h:form>
 				<div id="calculadora">
-
-
-
 					<table class="numerosOperacoes">
-
-
-
 						<tr>
 							<td colspan="4"><h:inputTextarea value="#{calc.exp}"
 									styleClass="ecran" disabled="true" /></td>
@@ -45,7 +37,7 @@
 
 						<tr>
 							<td><h:commandButton styleClass="buttons orange" id="raizq"
-									action="scientific" value="sqrt" actionListener="#{calc.read}" /></td>
+									action="scientific" value="&#8730;" actionListener="#{calc.read}" /></td>
 							<td><h:commandButton styleClass="buttons orange" id="sen"
 									action="scientific" value="sen" actionListener="#{calc.read}" /></td>
 							<td><h:commandButton styleClass="buttons orange" id="cos"
@@ -119,30 +111,6 @@
 					</table>
 
 				</div>
-			</h:form>
-			<br />
-			<h:form>
-				<h:dataTable id="items" value="#{calc.hist.entradas}" var="e"
-					border="2">
-					<f:facet name="caption">
-						<h:outputText value="Histórico de operações" />
-					</f:facet>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Expressão" />
-						</f:facet>
-						<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}"
-							title="Reutilizar esta expressão" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Resultado" />
-						</f:facet>
-						<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}"
-							title="Reutilizar este resultado" />
-
-					</h:column>
-				</h:dataTable>
 			</h:form>
 		</ui:define>
 	</ui:composition>

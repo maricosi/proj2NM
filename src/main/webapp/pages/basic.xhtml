@@ -9,18 +9,13 @@
 <h:head>
 	<title>Calculadora</title>
 	<h:outputStylesheet library="css" name="style.css" />
-	<h:outputScript library="js" name="script.js"/>
+	<h:outputScript library="js" name="script.js" />
 
 </h:head>
 <body id="body">
 
 	<ui:composition template="../template/commonLayout.xhtml">
-
 		<ui:define name="content">
-
-
-
-
 			<h:form>
 				<table class="numerosOperacoes">
 
@@ -83,46 +78,6 @@
 					</tr>
 
 				</table>
-
-				<div id="historico">
-
-
-
-					<h:form>
-
-						<h:dataTable id="items" value="#{calc.hist.entradas}" var="e"
-							border="2">
-
-
-							<f:facet name="caption">
-								<h:outputText value="Histórico de operações" />
-							</f:facet>
-
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Expressão" />
-								</f:facet>
-								<h:commandLink action="#{calc.reUseExp(e)}" value="#{e.exp}"
-									title="Reutilizar esta expressão" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Resultado" />
-								</f:facet>
-								<h:commandLink action="#{calc.reUseResult(e)}" value="#{e.res}"
-									title="Reutilizar este resultado" />
-
-							</h:column>
-
-
-						</h:dataTable>
-
-					</h:form>
-
-
-
-				</div>
-
 
 			</h:form>
 		</ui:define>

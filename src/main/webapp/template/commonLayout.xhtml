@@ -7,9 +7,9 @@
 
 <h:head>
 	<h:outputStylesheet library="css" name="style.css" />
-	<h:outputScript library="js" name="script.js"/>
+	<h:outputScript library="js" name="script.js" />
 </h:head>
-<body >
+<body>
 	<div id="page">
 
 		<div>
@@ -17,10 +17,16 @@
 				<ui:include src="commonHeader.xhtml" />
 			</ui:insert>
 		</div>
-		
+
 		<div id="content">
 			<ui:insert name="content">
 				<ui:include src="commonContent.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div>
+			<ui:insert name="HistoricoEstatistica">
+				<ui:include src="commonHistEst.xhtml" />
 			</ui:insert>
 		</div>
 
