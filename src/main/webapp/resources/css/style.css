@@ -1,5 +1,8 @@
 @CHARSET "ISO-8859-1";
 
+body{
+	min-width: 580px;
+}
 #page {
 	background-repeat:repeat-x;
 	background-image: url("../resources/images/fundo.png");
@@ -7,7 +10,6 @@
 	border-radius: 20px;
 	background-size: cover;
 	display: inherit;
-	
 }
 
 h1{
@@ -16,7 +18,7 @@ h1{
 	font-family: Verdana;
 	display: -webkit-inline-box;
 	vertical-align: middle;
-	padding: 20px;
+	padding: 18px;
 	
 	
 }
@@ -31,7 +33,7 @@ h1{
 	margin-right: auto;
 	margin-bottom: 20px;
 	background-color:#333300;
-	height:90px;
+	height:auto;
 	padding-left: 42px;
 	padding-right: 42px;
 	vertical-align: middle;
