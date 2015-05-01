@@ -5,11 +5,11 @@
 
 	<groupId>pt.uc.dei.aor.paj</groupId>
 	<artifactId>proj2NM</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0-FINAL</version>
 	<packaging>war</packaging>
 
 	<name>proj2NM</name>
-	<description>projeto Marisa e Nuno</description>
+	<description>projeto2 Marisa e Nuno</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

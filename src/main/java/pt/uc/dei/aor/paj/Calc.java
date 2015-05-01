@@ -236,7 +236,7 @@ public class Calc implements Serializable{
 	}
 	
 	private void novoOpAngulo(String d){
-		operadorValido = true;
+		
 		parentsisAberto = true;
 		if(existeVirgula == false){
 			virgulaValida = true;

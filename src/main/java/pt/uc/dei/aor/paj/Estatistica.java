@@ -66,8 +66,6 @@ public class Estatistica implements Serializable{
 					operation.get("cos").add();
 				else if(input.getConteudo().contains("tan"))
 					operation.get("tan").add();
-				else if(input.getConteudo().contains("^"))
-					operation.get("^").add();
 				else if(input.getConteudo().contains("log10"))
 					operation.get("log10").add();
 				else if(input.getConteudo().contains("log2"))
@@ -79,9 +77,11 @@ public class Estatistica implements Serializable{
 				else if(input.getConteudo().contains("cbrt"))
 					operation.get("cbrt").add();
 				else if(input.getConteudo().contains("e^"))
-					operation.get("e^x").add();
+					operation.get("e^x").add();					
 				else if(input.getConteudo().contains("10^"))
 					operation.get("10^x").add();
+				else if(input.getConteudo().contains("^"))
+					operation.get("^").add();
 			}
 		}
 		
@@ -96,9 +96,9 @@ public class Estatistica implements Serializable{
 			operation.get("1/x").add();
 		else if(in.getTipo().contains("x^2"))
 			operation.get("x^2").add();
-		else if(in.getTipo().contains("nm"))
+		else if(in.getTipo().contains("pi"))
 			operation.get("pi").add();
-		else if(in.getTipo().contains("nm"))
+		else if(in.getTipo().contains("e"))
 			operation.get("e").add();
 	}
 
