@@ -15,9 +15,9 @@
 			<header class="escolhaCalculadora">
 				<h1>Calculadora</h1>
 				<h:selectOneRadio  styleClass="tipo" id="tipo" value="#{calc.type}" onclick="redirect()" required="true" >
-					<f:selectItem itemValue="simples" itemLabel="Simples" 
+					<f:selectItem styleClass="radionButton" itemValue="simples" itemLabel="Simples" 
 						itemDescription="Usar calculadora simples" />
-					<f:selectItem itemValue="cientifica" itemLabel="Científica"
+					<f:selectItem styleClass="radionButton" itemValue="cientifica" itemLabel="Científica"
 						itemDescription="Usar calculadora Científica" />
 				</h:selectOneRadio>
 			</header>
